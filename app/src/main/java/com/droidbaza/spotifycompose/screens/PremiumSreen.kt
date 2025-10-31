@@ -49,7 +49,6 @@ import com.droidbaza.spotifycompose.tools.Ext.offsetY
 import com.droidbaza.spotifycompose.tools.Ext.round
 import com.droidbaza.spotifycompose.ui.theme.Primary
 
-
 @Composable
 fun PremiumScreen(paddingValues: PaddingValues = PaddingValues()) {
     val contentHeight = 320.dp
@@ -115,7 +114,6 @@ fun PremiumScreen(paddingValues: PaddingValues = PaddingValues()) {
                         maxLines = 2
                     )
                 }
-
             }
         }
         item {

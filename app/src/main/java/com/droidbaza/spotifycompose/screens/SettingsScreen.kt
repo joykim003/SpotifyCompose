@@ -19,5 +19,4 @@
 
 package com.droidbaza.spotifycompose.screens
 
-class SettingsScreen {
-}
+class SettingsScreen

@@ -36,7 +36,7 @@ fun TextTag(
     color: Color = Active,
     fontSize: TextUnit = 10.sp,
     fontWeight: FontWeight = FontWeight.Bold,
-    textAlign: TextAlign? = null,
+    textAlign: TextAlign? = null
 ) {
     Text(
         modifier = modifier,
@@ -46,5 +46,4 @@ fun TextTag(
         fontWeight = fontWeight,
         textAlign = textAlign
     )
-
 }

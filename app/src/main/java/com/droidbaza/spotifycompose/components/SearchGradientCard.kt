@@ -42,8 +42,6 @@ import com.droidbaza.spotifycompose.tools.Ext.clickableResize
 import com.droidbaza.spotifycompose.tools.Ext.round
 import com.droidbaza.spotifycompose.tools.Ext.vibrantColor
 
-
-
 @Composable
 fun SearchGradientCard(
     image: Int? = null,
@@ -78,7 +76,7 @@ fun SearchGradientCard(
             modifier = Modifier
                 .padding(10.dp)
                 .weight(1f),
-            color = Color.White,
+            color = Color.White
         )
         ImageCrop(
             data = res,

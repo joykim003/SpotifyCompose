@@ -45,14 +45,14 @@ fun PremiumCard(
     title: String = DEFAULT_TITLE,
     description: String = DEFAULT_DESCRIPTION,
     startColor: Color = PremiumStart,
-    endColor: Color = PremiumEnd,
+    endColor: Color = PremiumEnd
 ) {
     Column(
         Modifier
             .padding(20.dp)
             .fillMaxWidth()
             .round(8.dp)
-            .gradient(listOf(startColor,endColor))
+            .gradient(listOf(startColor, endColor))
             .padding(horizontal = 30.dp, vertical = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -62,7 +62,9 @@ fun PremiumCard(
         ) {
             TextTitle(
                 modifier = Modifier
-                    .width(100.dp), text = title, maxLines = 2
+                    .width(100.dp),
+                text = title,
+                maxLines = 2
             )
 
             Spacer(modifier = Modifier.weight(2f))
@@ -70,7 +72,6 @@ fun PremiumCard(
                 TextTitle("FREE")
                 TextSubtitle(text = "3 months", color = Color.LightGray)
             }
-
         }
         TextTitle(modifier = Modifier.padding(10.dp), fontSize = 17.sp, text = "1 Premium-account")
 
@@ -93,9 +94,7 @@ fun PremiumCard(
             color = Color.LightGray,
             maxLines = 4
         )
-
     }
-
 }
 
 @Composable

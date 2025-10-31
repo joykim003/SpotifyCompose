@@ -32,36 +32,40 @@ import androidx.compose.ui.unit.dp
 import com.droidbaza.spotifycompose.R
 import com.droidbaza.spotifycompose.tools.Ext.color
 import com.droidbaza.spotifycompose.tools.Ext.round
-import com.droidbaza.spotifycompose.ui.theme.Primary
 import com.droidbaza.spotifycompose.ui.theme.Primary30
 
 @Composable
 fun PlayerSmall(modifier: Modifier = Modifier) {
-
     Box(modifier.fillMaxWidth().round(8.dp).color(Color.DarkGray)) {
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .height(60.dp)
-            .padding(start = 6.dp),
-        verticalAlignment = Alignment.CenterVertically) {
-            ImageCrop(modifier = Modifier.size( 40.dp).round(5.dp), data = R.drawable.album)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+                .padding(start = 6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            ImageCrop(modifier = Modifier.size(40.dp).round(5.dp), data = R.drawable.album)
             Column(Modifier.weight(4f).padding(horizontal = 8.dp)) {
                 Text(text = "text", color = Color.White)
-                Text(text = "text",color=Color.Gray, fontWeight = FontWeight.Light)
+                Text(text = "text", color = Color.Gray, fontWeight = FontWeight.Light)
             }
             IconBtn(resIcon = R.drawable.ic_sound)
             IconBtn(resIcon = R.drawable.ic_h_outline)
             IconBtn(resIcon = R.drawable.ic_baseline_play_arrow_24)
         }
-        LinearProgressIndicator(modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(2.dp).padding(horizontal = 8.dp), progress = 0.8f, color = Color.White, backgroundColor = Primary30)
+        LinearProgressIndicator(
+            modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(2.dp).padding(
+                horizontal = 8.dp
+            ),
+            progress = 0.8f,
+            color = Color.White,
+            backgroundColor = Primary30
+        )
     }
-
-
-
 }
 
 @Preview
 @Composable
-fun PreviewSound(){
+fun PreviewSound() {
     PlayerSmall()
 }

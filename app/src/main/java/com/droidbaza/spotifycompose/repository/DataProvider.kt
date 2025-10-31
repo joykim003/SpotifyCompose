@@ -184,19 +184,19 @@ object DataProvider {
         if (categoryId in 17..20) {
             tag = "Some tag $index"
             description = "Lorem ipsum dolor sit amet, " +
-                    "consectetur adipiscing elit." +
-                    " Vivamus laoreet condimentum " +
-                    "tincidunt. Phasellus eu mi libero." +
-                    " Praesent aliquam dictum eros, " +
-                    "sit amet placerat odio imperdiet non. " +
-                    "Etiam eu placerat velit. Donec venenatis" +
-                    " dapibus enim quis ullamcorper. Phasellus" +
-                    " mauris mauris, commodo non justo nec, congue " +
-                    "consectetur arcu. Quisque lobortis vehicula orci" +
-                    " in feugiat. Mauris mollis odio vitae nisl vestibulum, " +
-                    "in faucibus nisi varius. Maecenas interdum nulla quis ante " +
-                    "rutrum gravida. Phasellus condimentum est tortor," +
-                    " non pellentesque mauris rhoncus a."
+                "consectetur adipiscing elit." +
+                " Vivamus laoreet condimentum " +
+                "tincidunt. Phasellus eu mi libero." +
+                " Praesent aliquam dictum eros, " +
+                "sit amet placerat odio imperdiet non. " +
+                "Etiam eu placerat velit. Donec venenatis" +
+                " dapibus enim quis ullamcorper. Phasellus" +
+                " mauris mauris, commodo non justo nec, congue " +
+                "consectetur arcu. Quisque lobortis vehicula orci" +
+                " in feugiat. Mauris mollis odio vitae nisl vestibulum, " +
+                "in faucibus nisi varius. Maecenas interdum nulla quis ante " +
+                "rutrum gravida. Phasellus condimentum est tortor," +
+                " non pellentesque mauris rhoncus a."
         }
 
         return Music(
@@ -237,14 +237,11 @@ object DataProvider {
             R.drawable.img17,
             R.drawable.img18,
             R.drawable.img19,
-            R.drawable.img20,
+            R.drawable.img20
         )
 
         return images.shuffled().subList(0, endIndex).mapIndexed { index, i ->
             itemBy(index, categoryId, i)
         }
-
     }
-
-
 }

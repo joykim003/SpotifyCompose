@@ -36,7 +36,7 @@ fun TextSubtitle(
     color: Color = Color.Gray,
     fontSize: TextUnit = 12.sp,
     fontWeight: FontWeight = FontWeight.Light,
-    textAlign: TextAlign? = null,
+    textAlign: TextAlign? = null
 ) {
     Text(
         modifier = modifier,
@@ -47,5 +47,4 @@ fun TextSubtitle(
         textAlign = textAlign,
         maxLines = maxLines
     )
-
 }

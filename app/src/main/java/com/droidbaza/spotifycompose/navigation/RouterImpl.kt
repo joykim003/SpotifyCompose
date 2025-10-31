@@ -93,7 +93,6 @@ class RouterImpl(
                             saveState = false
                         }
                     }
-
                 } else {
                     restoreState = true
                 }
@@ -111,10 +110,10 @@ class RouterImpl(
 
     override fun <T : Any> getArgs(tag: String): T? {
         return try {
-            navHostController.previousBackStackEntry?.arguments?.get(tag) as T?
+            @Suppress("UNCHECKED_CAST")
+            navHostController.previousBackStackEntry?.arguments?.get(tag) as? T
         } catch (ex: Exception) {
             null
         }
     }
-
 }

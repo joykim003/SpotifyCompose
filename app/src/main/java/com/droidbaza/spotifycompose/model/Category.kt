@@ -29,7 +29,7 @@ data class Category(
     var subtitle: String? = null,
     var author: Music? = null,
     var imageRes: Int? = null,
-    var data: List<Music> = emptyList(),
+    var data: List<Music> = emptyList()
 ) : Parcelable {
     companion object {
         val Default = Category(0, subtitle = "empty subtitle")

@@ -98,7 +98,7 @@ fun PlayerFullScreen() {
                 value = sliderPosition.value,
                 onValueChange = {
                     sliderPosition.value = it
-                },
+                }
             )
             Row(
                 modifier = Modifier.padding(horizontal = 5.dp)
@@ -130,7 +130,7 @@ fun PlayerFullScreen() {
                     text = "Text",
                     fontWeight = FontWeight.Bold,
                     fontSize = 15.sp,
-                    color = Color.White,
+                    color = Color.White
                 )
                 Text(
                     text = DEFAULT_DESCRIPTION,
@@ -139,7 +139,6 @@ fun PlayerFullScreen() {
                     maxLines = 8,
                     modifier = Modifier.padding(vertical = 20.dp)
                 )
-
 
                 Surface(
                     shape = CircleShape,
@@ -150,7 +149,7 @@ fun PlayerFullScreen() {
                     border = BorderStroke(
                         width = 1.dp,
                         color = Color.LightGray
-                    ),
+                    )
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -175,7 +174,6 @@ fun PlayerFullScreen() {
         }
     }
 }
-
 
 @Composable
 private fun customSliderColors(): SliderColors = SliderDefaults.colors(

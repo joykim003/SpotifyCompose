@@ -36,7 +36,7 @@ fun TextTitle(
     color: Color = Color.White,
     fontSize: TextUnit = 24.sp,
     fontWeight: FontWeight = FontWeight.Bold,
-    textAlign: TextAlign? = null,
+    textAlign: TextAlign? = null
 ) {
     Text(
         modifier = modifier,
@@ -45,7 +45,6 @@ fun TextTitle(
         fontSize = fontSize,
         fontWeight = fontWeight,
         textAlign = textAlign,
-        maxLines = maxLines,
+        maxLines = maxLines
     )
-
 }

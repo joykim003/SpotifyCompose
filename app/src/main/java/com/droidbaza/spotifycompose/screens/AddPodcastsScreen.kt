@@ -21,10 +21,10 @@ package com.droidbaza.spotifycompose.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -40,10 +40,10 @@ import com.droidbaza.spotifycompose.components.SearchBar
 import com.droidbaza.spotifycompose.components.TextTitle
 import com.droidbaza.spotifycompose.repository.DataProvider
 import com.droidbaza.spotifycompose.tools.Ext
+import com.droidbaza.spotifycompose.tools.Ext.clickableResize
 import com.droidbaza.spotifycompose.tools.Ext.color
 import com.droidbaza.spotifycompose.tools.Ext.gradient
 import com.droidbaza.spotifycompose.tools.Ext.offsetY
-import com.droidbaza.spotifycompose.tools.Ext.clickableResize
 import com.droidbaza.spotifycompose.tools.Ext.round
 import com.droidbaza.spotifycompose.tools.Sizes
 import com.droidbaza.spotifycompose.ui.theme.Primary30
@@ -54,7 +54,7 @@ fun AddPodcastsScreen() {
     val podcasts = remember {
         DataProvider.itemsBy(5, 20)
     }
-    val scrollState = rememberLazyListState()
+    val scrollState = rememberLazyGridState()
     val contentHeight = 100.dp
     val offsetY = scrollState.offsetY(contentHeight)
 
@@ -68,10 +68,9 @@ fun AddPodcastsScreen() {
                     .fillMaxWidth(),
                 contentAlignment = Alignment.BottomStart
             ) {
-
                 TextTitle(
                     modifier = Modifier.padding(Sizes.DEFAULT),
-                    text = "Search albums",
+                    text = "Search albums"
                 )
             }
             SearchBar(
@@ -86,9 +85,8 @@ fun AddPodcastsScreen() {
             state = scrollState,
             modifier = Modifier.padding(top = 70.dp),
             contentPadding = PaddingValues(top = 130.dp, bottom = 80.dp),
-            cells = GridCells.Fixed(3)
+            columns = GridCells.Fixed(3)
         ) {
-
             items(podcasts) {
                 CardColumn(100.dp, round = 8.dp, item = it)
             }

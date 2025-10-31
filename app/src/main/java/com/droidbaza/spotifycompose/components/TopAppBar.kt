@@ -39,7 +39,7 @@ import com.droidbaza.spotifycompose.ui.theme.Notification
 fun TopAppBar(
     modifier: Modifier = Modifier,
     title: String = "Good evening",
-    onActionClicked: (pos: Int) -> Unit = {},
+    onActionClicked: (pos: Int) -> Unit = {}
 ) {
     Row(
         modifier = modifier
@@ -51,7 +51,7 @@ fun TopAppBar(
             modifier = Modifier
                 .padding(horizontal = DEFAULT)
                 .weight(1f),
-            text = title,
+            text = title
         )
         Box {
             IconBtn(resIcon = R.drawable.ic_notification) {

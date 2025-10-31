@@ -119,7 +119,6 @@ fun LibsScreen(
                             fontSize = 13.sp
                         )
                     }
-
                 },
                 title = {
                     TextTitle(
@@ -173,7 +172,6 @@ fun LibsScreen(
                         modifier = Modifier.padding(top = 10.dp, bottom = 10.dp, end = 10.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-
                         IconBtn(resIcon = R.drawable.ic_baseline_arrow_downward_24) {
                             showFilter()
                         }
@@ -204,14 +202,14 @@ fun LibsScreen(
                             modifier = Modifier
                                 .padding(Sizes.MEDIUM)
                                 .clickableResize(goAddPersons),
-                            verticalAlignment = Alignment.CenterVertically,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
                             ImageCrop(
                                 modifier = Modifier
                                     .round(100)
                                     .size(60.dp)
                                     .background(Color(0x33868686)),
-                                data = R.drawable.ic_baseline_add_24,
+                                data = R.drawable.ic_baseline_add_24
                             )
                             Text(
                                 text = "Add artists",
@@ -237,7 +235,7 @@ fun LibsScreen(
                                     .size(60.dp)
                                     .round(10.dp)
                                     .background(Color(0x33868686)),
-                                data = R.drawable.ic_baseline_add_24,
+                                data = R.drawable.ic_baseline_add_24
                             )
                             Text(
                                 text = "Add albums",
@@ -260,7 +258,6 @@ fun LibsScreen(
     }
 }
 
-
 @Composable
 fun GridContent(items: List<Music>, onClick: () -> Unit) {
     VerticalGrid {
@@ -280,7 +277,7 @@ fun GridContent(items: List<Music>, onClick: () -> Unit) {
                     .size(145.dp)
                     .round(100)
                     .background(Color(0x33868686)),
-                data = R.drawable.ic_baseline_add_24,
+                data = R.drawable.ic_baseline_add_24
             )
             Text(
                 text = "Add artist",
@@ -305,7 +302,7 @@ fun GridContent(items: List<Music>, onClick: () -> Unit) {
                     .size(145.dp)
                     .round(10.dp)
                     .background(Color(0x33868686)),
-                data = R.drawable.ic_baseline_add_24,
+                data = R.drawable.ic_baseline_add_24
             )
             Text(
                 text = "Add album",
@@ -318,7 +315,6 @@ fun GridContent(items: List<Music>, onClick: () -> Unit) {
             )
         }
     }
-
 }
 
 @Composable
@@ -339,7 +335,6 @@ fun SheetContent() {
         TextTitle()
 
         LazyColumn {
-
             item {
                 Row {
                     Text(

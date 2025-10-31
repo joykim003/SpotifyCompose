@@ -70,20 +70,21 @@ fun NotificationsScreen(paddingValues: PaddingValues = PaddingValues()) {
                 color = Color.White,
                 fontWeight = FontWeight.Bold
             )
-        },
+        }
     )
 
     LazyColumn(
         modifier = Modifier.padding(start = 10.dp, end = 10.dp, top = 50.dp),
         state = scrollState,
         contentPadding = PaddingValues(
-            bottom = paddingValues.calculateBottomPadding(),
+            bottom = paddingValues.calculateBottomPadding()
         )
     ) {
         item {
             Box(modifier = Modifier.height(contentHeight)) {
                 TextTitle(
-                    "Whats new", modifier = Modifier
+                    "Whats new",
+                    modifier = Modifier
                         .alpha(alpha)
                         .padding(vertical = 20.dp, horizontal = 8.dp)
                 )
@@ -128,10 +129,7 @@ fun NotificationsScreen(paddingValues: PaddingValues = PaddingValues()) {
         items(tracks) { track ->
             CardRow(60.dp, round = 10.dp, item = track)
         }
-
     }
-
-
 }
 
 @Composable

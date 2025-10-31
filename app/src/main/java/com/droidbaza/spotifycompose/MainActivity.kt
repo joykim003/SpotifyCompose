@@ -26,14 +26,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.tooling.preview.Preview
 import com.droidbaza.spotifycompose.screens.*
-import com.droidbaza.spotifycompose.ui.theme.Primary
 import com.droidbaza.spotifycompose.ui.theme.SpotifyComposeTheme
 
 @ExperimentalFoundationApi
@@ -43,7 +37,6 @@ import com.droidbaza.spotifycompose.ui.theme.SpotifyComposeTheme
 class MainActivity : ComponentActivity() {
     private var backPressed = 0L
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -52,7 +45,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
 
     private val finish: () -> Unit = {
         if (backPressed + 3000 > System.currentTimeMillis()) {

@@ -31,6 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -64,15 +65,21 @@ fun HomeScreen(paddingValues: PaddingValues = PaddingValues(), router: Router? =
         contentPadding = PaddingValues(bottom = paddingValues.calculateBottomPadding())
     ) {
         item {
-            TopAppBar(onActionClicked = actionClicked)
+            TopAppBar(
+                modifier = Modifier.testTag("TopAppBar"),
+                onActionClicked = actionClicked
+            )
         }
 
         item {
             VerticalGrid(
-                modifier = Modifier.padding(horizontal = Sizes.SMALL)
+                modifier = Modifier
+                    .testTag("CategoriesGrid")
+                    .padding(horizontal = Sizes.SMALL)
             ) {
                 topCategories.forEach {
                     SmallCardItem(
+                        modifier = Modifier.testTag("CategoryItem"),
                         image = it.imageRes,
                         title = it.title
                     ) {

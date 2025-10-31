@@ -17,11 +17,12 @@
  *
  */
 
-package com.droidbaza.spotifycompose.tools
+package com.droidbaza.spotifycompose.ui.theme
 
 import androidx.compose.ui.unit.dp
 
-object Sizes {
+// Kept for theme-local sizes. Main app-wide sizes live in com.droidbaza.spotifycompose.tools.Sizes
+object Size {
     val DEFAULT = 10.dp
     val MEDIUM = 8.dp
     val LARGE = 20.dp

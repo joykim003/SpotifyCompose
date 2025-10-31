@@ -41,7 +41,7 @@ fun BaseColumn(
     roundPercent: Int = 0,
     horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     verticalArrangement: Arrangement.Vertical = Arrangement.Center,
-    content: @Composable ColumnScope.() -> Unit,
+    content: @Composable ColumnScope.() -> Unit
 ) {
     Column(
         modifier = modifier,
@@ -51,12 +51,10 @@ fun BaseColumn(
         ImageCrop(
             modifier = Modifier
                 .round(round, roundPercent)
-                .size(imageSize)
-                //.color(Placeholder)
-            ,
-            data = imageRes,
+                .size(imageSize),
+            // .color(Placeholder)
+            data = imageRes
         )
         content(this)
     }
-
 }

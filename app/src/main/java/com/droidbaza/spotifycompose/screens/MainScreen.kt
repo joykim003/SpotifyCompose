@@ -29,7 +29,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -38,9 +37,9 @@ import androidx.navigation.compose.rememberNavController
 import com.droidbaza.spotifycompose.components.NavigationBar
 import com.droidbaza.spotifycompose.components.PlayerSmall
 import com.droidbaza.spotifycompose.navigation.NavigationContainer
-import com.droidbaza.spotifycompose.navigation.Screen
 import com.droidbaza.spotifycompose.navigation.Router
 import com.droidbaza.spotifycompose.navigation.RouterImpl
+import com.droidbaza.spotifycompose.navigation.Screen
 import com.droidbaza.spotifycompose.tools.Ext
 import com.droidbaza.spotifycompose.tools.Ext.clickableResize
 import com.droidbaza.spotifycompose.tools.Ext.gradient
@@ -50,7 +49,6 @@ import com.droidbaza.spotifycompose.tools.Ext.gradient
 @ExperimentalMaterialApi
 @Composable
 fun MainScreen(finish: () -> Unit) {
-
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val route = navBackStackEntry?.destination?.route ?: Screen.Splash.route
@@ -99,4 +97,3 @@ fun MainScreen(finish: () -> Unit) {
         NavigationContainer(navController = navController, paddingValues = it, router = router)
     }
 }
-

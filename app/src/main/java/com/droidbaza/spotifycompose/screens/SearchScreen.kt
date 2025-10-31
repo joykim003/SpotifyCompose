@@ -21,10 +21,10 @@ package com.droidbaza.spotifycompose.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -36,8 +36,8 @@ import com.droidbaza.spotifycompose.components.SearchBar
 import com.droidbaza.spotifycompose.components.SearchGradientCard
 import com.droidbaza.spotifycompose.components.TextTitle
 import com.droidbaza.spotifycompose.repository.DataProvider
-import com.droidbaza.spotifycompose.tools.Ext.offsetY
 import com.droidbaza.spotifycompose.tools.Ext.clickableResize
+import com.droidbaza.spotifycompose.tools.Ext.offsetY
 import com.droidbaza.spotifycompose.tools.Sizes
 
 @ExperimentalFoundationApi
@@ -47,7 +47,7 @@ fun SearchScreen(paddingValues: PaddingValues = PaddingValues()) {
         DataProvider.categoriesBy(14)
     }
 
-    val scrollState = rememberLazyListState()
+    val scrollState = rememberLazyGridState()
     val contentHeight = 100.dp
     val offsetY = scrollState.offsetY(contentHeight)
 
@@ -58,7 +58,7 @@ fun SearchScreen(paddingValues: PaddingValues = PaddingValues()) {
             top = 130.dp,
             bottom = paddingValues.calculateBottomPadding()
         ),
-        cells = GridCells.Fixed(2)
+        columns = GridCells.Fixed(2)
     ) {
         items(categories) {
             SearchGradientCard(
@@ -84,7 +84,6 @@ fun SearchScreen(paddingValues: PaddingValues = PaddingValues()) {
                 .padding(Sizes.MEDIUM)
                 .height(50.dp)
                 .clickableResize {
-
                 },
             title = "Artists,songs,or podcasts"
         )

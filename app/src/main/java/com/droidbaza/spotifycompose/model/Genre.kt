@@ -27,10 +27,9 @@ import kotlinx.parcelize.Parcelize
 data class Genre(
     val id: Int = 0,
     val title: String? = null,
-    val image: Int? = null,
+    val image: Int? = null
 ) : Parcelable {
     companion object {
         val Default = Genre(title = "empty genre", image = R.drawable.album)
     }
-
 }

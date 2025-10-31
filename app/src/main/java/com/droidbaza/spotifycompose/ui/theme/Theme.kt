@@ -38,16 +38,15 @@ private val LightColorPalette = lightColors(
     primaryVariant = Purple700,
     secondary = Teal200,
     background = Color.Transparent,
-    surface = Color.Transparent,
+    surface = Color.Transparent
 
-
-    )
+)
 
 @ExperimentalFoundationApi
 @Composable
 fun SpotifyComposeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
         DarkColorPalette
@@ -57,8 +56,8 @@ fun SpotifyComposeTheme(
 
     MaterialTheme(
         colors = colors,
-        typography = Typography,
-        shapes = Shapes,
+        typography = AppTypography,
+        shapes = Shapes
     ) {
         content()
     }

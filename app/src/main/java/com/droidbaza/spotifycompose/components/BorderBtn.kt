@@ -22,7 +22,6 @@ package com.droidbaza.spotifycompose.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
@@ -34,13 +33,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidbaza.spotifycompose.R
 
-
 @Composable
 fun BorderBtn(
     modifier: Modifier = Modifier,
     resIcon: Int = R.drawable.ic_baseline_close_24,
     tint: Color = Color.LightGray,
-    onClick: () -> Unit = {},
+    onClick: () -> Unit = {}
 ) {
     Surface(
         color = Color.Transparent,
@@ -52,20 +50,17 @@ fun BorderBtn(
         ),
         modifier = modifier
             .clickable {
-            onClick()
-        }
+                onClick()
+            }
     ) {
-
         Icon(
             modifier = Modifier.padding(4.dp),
             painter = painterResource(id = resIcon),
             contentDescription = null,
             tint = tint
         )
-
     }
 }
-
 
 @Composable
 @Preview

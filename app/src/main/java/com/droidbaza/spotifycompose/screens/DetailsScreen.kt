@@ -137,11 +137,11 @@ fun DetailsScreen(paddingValues: PaddingValues = PaddingValues()) {
             TextTitle(
                 modifier = Modifier
                     .padding(Sizes.DEFAULT),
-                text = "Title",
+                text = "Title"
             )
             VerticalGrid(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
             ) {
                 albums.forEach {
                     CardColumn(roundPercent = 100, item = it)

@@ -27,6 +27,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -71,7 +72,6 @@ object Ext {
         HORIZONTAL, VERTICAL, LINEAR, RADIAL, SWEEP
     }
 
-
     fun Modifier.gradient(
         colors: List<Color>,
         gradientType: GradientType = GradientType.LINEAR
@@ -108,7 +108,6 @@ object Ext {
         }
     }
 
-
     @SuppressLint("UnnecessaryComposedModifier")
     fun Modifier.clickableResize(
         onClick: () -> Unit
@@ -128,7 +127,6 @@ object Ext {
                     }
                 )
             }
-
     }
 
     private fun Modifier.changeSize(resize: Boolean = false, minScale: Float) {
@@ -140,7 +138,6 @@ object Ext {
         }
         this.scale(scaleResize)
     }
-
 
     fun Modifier.round(
         percent: Int = 0
@@ -160,12 +157,22 @@ object Ext {
         return this.background(color)
     }
 
-
     @Composable
     fun LazyListState.offsetY(contentHeight: Dp): Dp {
         return if (firstVisibleItemIndex != 0) {
             contentHeight
-        } else with(LocalDensity.current) { firstVisibleItemScrollOffset.toDp() }
+        } else {
+            with(LocalDensity.current) { firstVisibleItemScrollOffset.toDp() }
+        }
+    }
+
+    @Composable
+    fun LazyGridState.offsetY(contentHeight: Dp): Dp {
+        return if (firstVisibleItemIndex != 0) {
+            contentHeight
+        } else {
+            with(LocalDensity.current) { firstVisibleItemScrollOffset.toDp() }
+        }
     }
 
     fun <T : Any> NavHostController.putArgs(args: Pair<String, T>) {
@@ -186,7 +193,9 @@ object Ext {
                 is Bundle -> putBundle(key, value)
                 // is Serializable -> putSerializable(key, value)
                 is Parcelable -> putParcelable(key, value)
-                else -> throw IllegalStateException("Type ${value.javaClass.canonicalName} is not supported now")
+                else -> throw IllegalStateException(
+                    "Type ${value.javaClass.canonicalName} is not supported now"
+                )
             }
         }
     }

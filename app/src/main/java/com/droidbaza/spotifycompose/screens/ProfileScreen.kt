@@ -19,5 +19,4 @@
 
 package com.droidbaza.spotifycompose.screens
 
-class ProfileScreen {
-}
+class ProfileScreen

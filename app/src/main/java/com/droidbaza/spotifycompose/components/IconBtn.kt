@@ -28,7 +28,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.droidbaza.spotifycompose.R
 
-
 @Composable
 fun IconBtn(
     resIcon: Int,
@@ -36,7 +35,7 @@ fun IconBtn(
     tint: Color = Color.White,
     selected: Boolean = true,
     selectedIcon: Int = resIcon,
-    onClick: () -> Unit = {},
+    onClick: () -> Unit = {}
 ) {
     IconButton(modifier = modifier, onClick = onClick) {
         Icon(
@@ -51,11 +50,10 @@ fun IconBtn(
     }
 }
 
-
 @Composable
 @Preview
 fun PreviewIconBtn() {
     IconBtn(
-        resIcon = R.drawable.ic_down,
+        resIcon = R.drawable.ic_down
     )
 }

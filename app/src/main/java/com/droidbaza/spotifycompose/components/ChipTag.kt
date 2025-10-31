@@ -40,7 +40,7 @@ fun ChipTag(
     modifier: Modifier = Modifier,
     selected: Boolean = false,
     text: String = "Empty",
-    onChipSelected: () -> Unit = {},
+    onChipSelected: () -> Unit = {}
 ) {
     Surface(
         color = when {
@@ -67,7 +67,6 @@ fun ChipTag(
             fontSize = 12.sp,
             color = Color.White
         )
-
     }
 }
 

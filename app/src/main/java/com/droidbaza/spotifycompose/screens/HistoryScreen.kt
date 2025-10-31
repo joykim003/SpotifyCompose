@@ -19,5 +19,4 @@
 
 package com.droidbaza.spotifycompose.screens
 
-class HistoryScreen {
-}
+class HistoryScreen

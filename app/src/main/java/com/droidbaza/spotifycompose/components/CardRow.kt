@@ -35,7 +35,7 @@ fun CardRow(
     round: Dp? = null,
     roundPercent: Int = 0,
     item: Music = Music.Default,
-    onClick: (Music) -> Unit = {},
+    onClick: (Music) -> Unit = {}
 ) {
     BaseRaw(
         modifier = Modifier

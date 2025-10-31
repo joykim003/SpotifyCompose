@@ -21,10 +21,10 @@ package com.droidbaza.spotifycompose.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -54,7 +54,7 @@ fun AddPersonsScreen() {
         DataProvider.itemsBy(3, 20)
     }
 
-    val scrollState = rememberLazyListState()
+    val scrollState = rememberLazyGridState()
     val contentHeight = 100.dp
     val offsetY = scrollState.offsetY(contentHeight)
 
@@ -68,10 +68,9 @@ fun AddPersonsScreen() {
                     .fillMaxWidth(),
                 contentAlignment = Alignment.BottomStart
             ) {
-
                 TextTitle(
                     modifier = Modifier.padding(Sizes.DEFAULT),
-                    text = "Search artists",
+                    text = "Search artists"
                 )
             }
             SearchBar(
@@ -82,10 +81,10 @@ fun AddPersonsScreen() {
         }
 
         LazyVerticalGrid(
-            state = scrollState,
+            state = rememberLazyGridState(),
             modifier = Modifier.padding(top = 70.dp),
             contentPadding = PaddingValues(top = 130.dp, bottom = 80.dp),
-            cells = GridCells.Fixed(3)
+            columns = GridCells.Fixed(3)
         ) {
             items(persons) {
                 CardColumn(100.dp, roundPercent = 100, item = it)

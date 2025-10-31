@@ -41,7 +41,7 @@ import com.droidbaza.spotifycompose.tools.Sizes.SMALL
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
-    title: String = "Title",
+    title: String = "Title"
 ) {
     Row(
         modifier = modifier

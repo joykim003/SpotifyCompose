@@ -37,7 +37,7 @@ import com.droidbaza.spotifycompose.screens.*
 fun NavigationContainer(
     router: Router,
     navController: NavHostController,
-    paddingValues: PaddingValues,
+    paddingValues: PaddingValues
 ) {
     val startDestination = remember { mutableStateOf(Screen.Splash.route) }
     LaunchedEffect(startDestination) {
@@ -47,7 +47,7 @@ fun NavigationContainer(
     }
     NavHost(
         navController = navController,
-        startDestination = startDestination.value,
+        startDestination = startDestination.value
     ) {
         composable(Screen.Home.route) {
             HomeScreen(paddingValues, router)

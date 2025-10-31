@@ -50,7 +50,6 @@ fun SplashScreen(goBack: () -> Unit = {}) {
             tint = Active
         )
     }
-
 }
 
 @Preview

@@ -88,5 +88,4 @@ sealed class Screen(
             return fullScreenRoutes.contains(route)
         }
     }
-
 }

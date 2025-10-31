@@ -41,7 +41,7 @@ fun BaseRaw(
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Center,
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     contentEnd: @Composable (RowScope.() -> Unit)? = null,
-    content: @Composable ColumnScope.() -> Unit,
+    content: @Composable ColumnScope.() -> Unit
 ) {
     Row(
         modifier = modifier,
@@ -53,15 +53,15 @@ fun BaseRaw(
                 .round(round, roundPercent)
                 .size(imageSize)
                 .color(Placeholder),
-            data = imageRes,
+            data = imageRes
         )
         Column(
             Modifier
                 .padding(horizontal = 8.dp)
-                .weight(2f)) {
+                .weight(2f)
+        ) {
             content(this)
         }
         contentEnd?.invoke(this)
     }
-
 }

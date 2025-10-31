@@ -40,7 +40,7 @@ fun CardColumn(
     item: Music = Music.Default,
     horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     verticalArrangement: Arrangement.Vertical = Arrangement.Center,
-    onClick: (Music) -> Unit = {},
+    onClick: (Music) -> Unit = {}
 ) {
     var finalAlignment = horizontalAlignment
     if (round != null) {
@@ -64,9 +64,8 @@ fun CardColumn(
         round = round,
         roundPercent = roundPercent,
         horizontalAlignment = finalAlignment,
-        verticalArrangement = verticalArrangement,
+        verticalArrangement = verticalArrangement
     ) {
-
         tag?.let {
             TextTag(text = it, modifier = Modifier.padding(top = 8.dp))
         }

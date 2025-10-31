@@ -31,8 +31,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.droidbaza.spotifycompose.R
-import com.droidbaza.spotifycompose.tools.Ext.color
 import com.droidbaza.spotifycompose.tools.Ext.clickableResize
+import com.droidbaza.spotifycompose.tools.Ext.color
 import com.droidbaza.spotifycompose.tools.Ext.round
 import com.droidbaza.spotifycompose.ui.theme.Placeholder
 
@@ -62,7 +62,7 @@ fun SmallCardItem(
             text = title,
             fontWeight = FontWeight.Bold,
             color = Color.White,
-            modifier = Modifier.padding(horizontal = 8.dp),
+            modifier = Modifier.padding(horizontal = 8.dp)
         )
     }
 }
