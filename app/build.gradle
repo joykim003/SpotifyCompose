@@ -64,6 +64,11 @@ android {
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            // Exclude common duplicate license/notice files that can appear from test
+            // dependencies (JUnit Jupiter, etc.) when building androidTest APKs.
+            excludes += 'META-INF/LICENSE.md'
+            excludes += 'META-INF/LICENSE'
+            excludes += 'META-INF/NOTICE'
         }
     }
 }
@@ -111,7 +116,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4"
-    androidTestImplementation "io.mockk:mockk-android:1.13.8"
+    // mockk-android pulls some junit-jupiter artifacts transitively which are not needed
+    // for android instrumentation tests and can cause duplicate META-INF files.
+    androidTestImplementation("io.mockk:mockk-android:1.13.8") {
+        exclude group: 'org.junit.jupiter'
+    }
     
     // Debug
     debugImplementation "androidx.compose.ui:ui-tooling"
