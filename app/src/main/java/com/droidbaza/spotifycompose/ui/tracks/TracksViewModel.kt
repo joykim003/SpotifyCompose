@@ -15,8 +15,14 @@ class TracksViewModel(app: Application) : AndroidViewModel(app) {
     private val _tracks = MutableStateFlow<List<TrackItem>>(emptyList())
     val tracks: StateFlow<List<TrackItem>> = _tracks
 
-    private val _loading = MutableStateFlow(false)
-    val loading: StateFlow<Boolean> = _loading
+    private val _loadingInitial = MutableStateFlow(false)
+    val loadingInitial: StateFlow<Boolean> = _loadingInitial
+
+    private val _loadingMore = MutableStateFlow(false)
+    val loadingMore: StateFlow<Boolean> = _loadingMore
+
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> = _errorMessage
 
     private var offset: Int = 0
     private val limit: Int = 20
@@ -26,12 +32,24 @@ class TracksViewModel(app: Application) : AndroidViewModel(app) {
         _tracks.value = emptyList()
         offset = 0
         hasMore = true
-        loadMore()
+        _loadingInitial.value = true
+        viewModelScope.launch {
+            runCatching { getPaged(limit, offset) }
+                .onSuccess { page ->
+                    _tracks.value = page.items
+                    offset = page.items.size
+                    hasMore = page.hasMore
+                }
+                .onFailure { e ->
+                    _errorMessage.value = e.message ?: "Une erreur est survenue"
+                }
+            _loadingInitial.value = false
+        }
     }
 
     fun loadMore() {
-        if (!hasMore || _loading.value) return
-        _loading.value = true
+        if (!hasMore || _loadingMore.value) return
+        _loadingMore.value = true
         viewModelScope.launch {
             runCatching { getPaged(limit, offset) }
                 .onSuccess { page ->
@@ -39,10 +57,12 @@ class TracksViewModel(app: Application) : AndroidViewModel(app) {
                     offset += page.items.size
                     hasMore = page.hasMore
                 }
-                .onFailure {
-                    // noop: surface via UI as needed
+                .onFailure { e ->
+                    _errorMessage.value = e.message ?: "Une erreur est survenue"
                 }
-            _loading.value = false
+            _loadingMore.value = false
         }
     }
+
+    fun clearError() { _errorMessage.value = null }
 }
