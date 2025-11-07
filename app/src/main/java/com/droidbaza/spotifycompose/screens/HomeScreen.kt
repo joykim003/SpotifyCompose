@@ -35,6 +35,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.clickable
 import com.droidbaza.spotifycompose.components.*
 import com.droidbaza.spotifycompose.components.core.VerticalGrid
 import com.droidbaza.spotifycompose.model.Music
@@ -72,7 +73,7 @@ fun HomeScreen(paddingValues: PaddingValues = PaddingValues(), router: Router? =
         }
 
         item {
-            VerticalGrid(
+                VerticalGrid(
                 modifier = Modifier
                     .testTag("CategoriesGrid")
                     .padding(horizontal = Sizes.SMALL)
@@ -87,6 +88,15 @@ fun HomeScreen(paddingValues: PaddingValues = PaddingValues(), router: Router? =
                     }
                 }
             }
+            }
+
+            item {
+                androidx.compose.material3.Text(
+                    text = "Open Tracks",
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .clickable { router?.goTracks() }
+                )
         }
 
         items(categories) { category ->

@@ -90,6 +90,10 @@ fun NavigationContainer(
         composable(Screen.AddPersons.route) {
             AddPersonsScreen()
         }
+        composable(Screen.Tracks.route) {
+            // Tracks screen uses its own ViewModel internally
+            com.droidbaza.spotifycompose.ui.tracks.TracksScreen()
+        }
         composable(Screen.PlayerFull.route) {
             PlayerFullScreen()
         }

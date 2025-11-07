@@ -1,0 +1,33 @@
+package com.droidbaza.spotifycompose.ui.login
+
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import com.droidbaza.spotifycompose.domain.usecase.LoginUseCase
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+
+class LoginViewModel(app: Application) : AndroidViewModel(app) {
+    private val login = LoginUseCase(app)
+
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean> = _loading
+
+    private val _error = MutableStateFlow<String?>(null)
+    val error: StateFlow<String?> = _error
+
+    private val _success = MutableStateFlow(false)
+    val success: StateFlow<Boolean> = _success
+
+    fun submit(email: String, password: String) {
+        _error.value = null
+        _loading.value = true
+        viewModelScope.launch {
+            val res = login(email, password)
+            _loading.value = false
+            res.onSuccess { _success.value = true }
+                .onFailure { _error.value = it.message ?: "Erreur inconnue" }
+        }
+    }
+}

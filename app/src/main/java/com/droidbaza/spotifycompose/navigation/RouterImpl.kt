@@ -48,6 +48,10 @@ class RouterImpl(
         navigate(Screen.History)
     }
 
+    override fun goTracks() {
+        navigate(Screen.Tracks)
+    }
+
     override fun goBack() {
         navHostController.apply {
             navigateUp()

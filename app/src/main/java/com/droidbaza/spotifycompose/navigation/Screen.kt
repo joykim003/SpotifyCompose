@@ -34,6 +34,7 @@ import com.droidbaza.spotifycompose.navigation.Routes.ROUTE_PROFILE
 import com.droidbaza.spotifycompose.navigation.Routes.ROUTE_SEARCH
 import com.droidbaza.spotifycompose.navigation.Routes.ROUTE_SETTINGS
 import com.droidbaza.spotifycompose.navigation.Routes.ROUTE_SPLASH
+import com.droidbaza.spotifycompose.navigation.Routes.ROUTE_TRACKS
 import com.droidbaza.spotifycompose.navigation.Routes.fullScreenRoutes
 
 object Routes {
@@ -50,6 +51,7 @@ object Routes {
     const val ROUTE_SETTINGS = "ROUTE_SETTINGS"
     const val ROUTE_HISTORY = "ROUTE_HISTORY"
     const val ROUTE_PROFILE = "ROUTE_PROFILE"
+    const val ROUTE_TRACKS = "ROUTE_TRACKS"
 
     val fullScreenRoutes = listOf(
         ROUTE_SPLASH,
@@ -82,6 +84,7 @@ sealed class Screen(
     object Profile : Screen(route = ROUTE_PROFILE)
     object Settings : Screen(route = ROUTE_SETTINGS)
     object History : Screen(route = ROUTE_HISTORY)
+    object Tracks : Screen(route = ROUTE_TRACKS, title = "Tracks")
 
     companion object {
         fun isFullScreen(route: String?): Boolean {

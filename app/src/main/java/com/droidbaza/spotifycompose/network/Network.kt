@@ -1,9 +1,11 @@
 package com.droidbaza.spotifycompose.network
 
+import com.droidbaza.spotifycompose.BuildConfig
+import com.droidbaza.spotifycompose.network.auth.AuthInterceptor
+import com.droidbaza.spotifycompose.network.auth.TokenAuthenticator
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.create
 import retrofit2.converter.gson.GsonConverterFactory
 
 object Network {
@@ -11,17 +13,21 @@ object Network {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
-    private val client = OkHttpClient.Builder()
-        .addInterceptor(logging)
-        .build()
+    fun retrofit(
+        authInterceptor: AuthInterceptor? = null,
+        tokenAuthenticator: TokenAuthenticator? = null
+    ): Retrofit {
+        val clientBuilder = OkHttpClient.Builder()
+            .addInterceptor(logging)
+        authInterceptor?.let { clientBuilder.addInterceptor(it) }
+        tokenAuthenticator?.let { clientBuilder.authenticator(it) }
 
-    val retrofit: Retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl("https://1cfa5e41c4c9.ngrok-free.app/") // replace with BuildConfig.BASE_URL in production
+        val client = clientBuilder.build()
+
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
-    inline fun <reified T> service(): T = retrofit.create()
 }

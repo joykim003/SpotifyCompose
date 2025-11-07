@@ -27,7 +27,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.ExperimentalComposeUiApi
-import com.droidbaza.spotifycompose.screens.*
+import com.droidbaza.spotifycompose.ui.RootScreen
 import com.droidbaza.spotifycompose.ui.theme.SpotifyComposeTheme
 
 @ExperimentalFoundationApi
@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SpotifyComposeTheme {
-                MainScreen(finish = finish)
+                RootScreen(onFinish = finish)
             }
         }
     }

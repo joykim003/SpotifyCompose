@@ -25,6 +25,7 @@ interface Router {
     fun goNotification()
     fun goSettings()
     fun goHistory()
+    fun goTracks()
     fun goProfile()
     fun goDetails(arg: Any?)
     fun goPlayerFull(arg: Any?)
