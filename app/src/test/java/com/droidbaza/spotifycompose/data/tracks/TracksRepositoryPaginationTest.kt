@@ -1,8 +1,8 @@
-package com.droidbaza.spotifycompose.data.auth
+package com.droidbaza.spotifycompose.data.tracks
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
-import com.droidbaza.spotifycompose.testutil.FakeTokenStore
+import com.droidbaza.spotifycompose.domain.model.Paged
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert.assertEquals
@@ -14,7 +14,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @RunWith(RobolectricTestRunner::class)
-class AuthRepositoryTest {
+class TracksRepositoryPaginationTest {
 
     private fun retrofitFor(server: MockWebServer): Retrofit = Retrofit.Builder()
         .baseUrl(server.url("/").toString())
@@ -22,45 +22,41 @@ class AuthRepositoryTest {
         .build()
 
     @Test
-    fun login_success_persists_tokens() {
+    fun pagination_ok_maps_to_domain() {
         val context: Context = ApplicationProvider.getApplicationContext()
-        val store = FakeTokenStore()
         val server = MockWebServer()
         server.enqueue(
             MockResponse().setResponseCode(200).setBody(
                 """
-                {"success":true,"data":{"session":{"access_token":"ACCESS","refresh_token":"REFRESH"}}}
+                {"success":true,"data":{"items":[{"id":"550e8400-e29b-41d4-a716-446655440000","title":"Song A","artist":{"name":"Artist A"},"durationMs":180000}],"total":1,"limit":20,"offset":0,"hasMore":false}}
                 """.trimIndent()
             )
         )
         server.start()
         try {
-            val api = retrofitFor(server).create(AuthApi::class.java)
-            val repo = AuthRepository(context, authApi = api, tokenStore = store)
-            val res = kotlin.runCatching {
-                kotlinx.coroutines.runBlocking { repo.login("a@b.c", "pwd") }
-            }
-            assertTrue(res.isSuccess)
-            // TokenStore should now contain the tokens
-            val access = store.getAccessTokenSync()
-            val refresh = store.getRefreshTokenSync()
-            assertEquals("ACCESS", access)
-            assertEquals("REFRESH", refresh)
+            val api = retrofitFor(server).create(TracksApi::class.java)
+            val repo = TracksRepository(context, injectedApi = api)
+            val page: Paged<com.droidbaza.spotifycompose.domain.model.TrackItem> =
+                kotlinx.coroutines.runBlocking { repo.getTracks(20, 0) }
+            assertEquals(1, page.items.size)
+            assertEquals("Song A", page.items.first().title)
+            assertEquals(false, page.hasMore)
+            assertEquals(0, page.offset)
         } finally {
             server.shutdown()
         }
     }
 
     @Test
-    fun login_failure_returns_failure() {
+    fun pagination_error_throws() {
         val context: Context = ApplicationProvider.getApplicationContext()
         val server = MockWebServer()
-        server.enqueue(MockResponse().setResponseCode(401).setBody("{}"))
+        server.enqueue(MockResponse().setResponseCode(500).setBody("{}"))
         server.start()
         try {
-            val api = retrofitFor(server).create(AuthApi::class.java)
-            val repo = AuthRepository(context, authApi = api, tokenStore = FakeTokenStore())
-            val res = kotlinx.coroutines.runBlocking { repo.login("a@b.c", "pwd") }
+            val api = retrofitFor(server).create(TracksApi::class.java)
+            val repo = TracksRepository(context, injectedApi = api)
+            val res = kotlin.runCatching { kotlinx.coroutines.runBlocking { repo.getTracks(20, 0) } }
             assertTrue(res.isFailure)
         } finally {
             server.shutdown()

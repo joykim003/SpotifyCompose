@@ -1,10 +1,7 @@
 package com.droidbaza.spotifycompose.network
-
-import android.content.Context
-import androidx.test.core.app.ApplicationProvider
 import com.droidbaza.spotifycompose.network.auth.AuthInterceptor
 import com.droidbaza.spotifycompose.network.auth.TokenAuthenticator
-import com.droidbaza.spotifycompose.network.auth.TokenStore
+import com.droidbaza.spotifycompose.testutil.FakeTokenStore
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -17,10 +14,8 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.junit.Ignore
 
 @RunWith(RobolectricTestRunner::class)
-@Ignore("DataStore I/O under unit tests; to be re-enabled with injectable TokenStore")
 class AuthNetworkingTest {
 
     private fun clientWith(auth: AuthInterceptor? = null, authenticator: TokenAuthenticator? = null): OkHttpClient {
@@ -33,8 +28,7 @@ class AuthNetworkingTest {
 
     @Test
     fun `adds bearer header when access token present`() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        val store = TokenStore.getInstance(context)
+        val store = FakeTokenStore(access = "ACCESS")
         runBlocking { store.setTokens("ACCESS", "REFRESH") }
 
         val server = MockWebServer()
@@ -53,8 +47,7 @@ class AuthNetworkingTest {
 
     @Test
     fun `authenticator retries once after 401`() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        val store = TokenStore.getInstance(context)
+        val store = FakeTokenStore(access = "OLD", refresh = "REFRESH")
         runBlocking { store.setTokens("OLD", "REFRESH") }
 
         val server = MockWebServer()

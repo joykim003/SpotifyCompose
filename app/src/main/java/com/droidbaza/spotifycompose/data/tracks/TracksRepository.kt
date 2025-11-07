@@ -6,7 +6,7 @@ import com.droidbaza.spotifycompose.domain.model.TrackItem
 import com.droidbaza.spotifycompose.network.Network
 import com.droidbaza.spotifycompose.network.auth.AuthInterceptor
 import com.droidbaza.spotifycompose.network.auth.TokenAuthenticator
-import com.droidbaza.spotifycompose.network.auth.TokenStore
+import com.droidbaza.spotifycompose.network.auth.TokenStores
 import com.droidbaza.spotifycompose.network.generated.model.Track
 
 class TracksRepository(
@@ -16,7 +16,7 @@ class TracksRepository(
 
     private val api: TracksApi by lazy {
         injectedApi ?: run {
-            val store = TokenStore.getInstance(context)
+            val store = TokenStores.get(context)
             val retrofit = Network.retrofit(AuthInterceptor(store), TokenAuthenticator(store))
             retrofit.create(TracksApi::class.java)
         }

@@ -5,7 +5,7 @@ import androidx.test.core.app.ApplicationProvider
 import com.droidbaza.spotifycompose.network.auth.AuthInterceptor
 import com.droidbaza.spotifycompose.network.auth.RefreshApi
 import com.droidbaza.spotifycompose.network.auth.TokenAuthenticator
-import com.droidbaza.spotifycompose.network.auth.TokenStore
+import com.droidbaza.spotifycompose.testutil.FakeTokenStore
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,14 +13,12 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert.assertFalse
 import org.junit.Test
-import org.junit.Ignore
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @RunWith(RobolectricTestRunner::class)
-@Ignore("DataStore I/O under unit tests; to be re-enabled with injectable TokenStore")
 class TokenAuthenticatorTest {
 
     private fun clientWith(auth: AuthInterceptor? = null, authenticator: TokenAuthenticator? = null): OkHttpClient {
@@ -33,9 +31,7 @@ class TokenAuthenticatorTest {
 
     @Test
     fun `refresh KO does not retry successfully`() {
-        val context: Context = ApplicationProvider.getApplicationContext()
-        val store = TokenStore.getInstance(context)
-        // Access token expired, refresh available
+        val store = FakeTokenStore(access = "EXPIRED", refresh = "REFRESH")
         kotlinx.coroutines.runBlocking { store.setTokens("EXPIRED", "REFRESH") }
 
         val server = MockWebServer()

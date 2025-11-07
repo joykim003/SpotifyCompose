@@ -3,7 +3,7 @@ package com.droidbaza.spotifycompose.network
 import android.content.Context
 import com.droidbaza.spotifycompose.network.auth.AuthInterceptor
 import com.droidbaza.spotifycompose.network.auth.TokenAuthenticator
-import com.droidbaza.spotifycompose.network.auth.TokenStore
+import com.droidbaza.spotifycompose.network.auth.TokenStores
 import com.droidbaza.spotifycompose.network.generated.api.AuthenticationApi
 import com.droidbaza.spotifycompose.network.generated.api.TracksApi
 import com.droidbaza.spotifycompose.network.generated.api.AlbumsApi
@@ -17,7 +17,7 @@ object ApiFactory {
     @Volatile private var retrofitHolder: retrofit2.Retrofit? = null
 
     private fun buildRetrofit(context: Context): retrofit2.Retrofit {
-        val store = TokenStore.getInstance(context)
+        val store = TokenStores.get(context)
         val authInterceptor = AuthInterceptor(store)
         val tokenAuthenticator = TokenAuthenticator(store)
         return Network.retrofit(authInterceptor, tokenAuthenticator)

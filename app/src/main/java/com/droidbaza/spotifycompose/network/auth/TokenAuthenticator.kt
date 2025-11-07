@@ -22,7 +22,7 @@ interface RefreshApi {
 }
 
 class TokenAuthenticator(
-    private val tokenStore: TokenStore,
+    private val tokenStore: TokenStoreContract,
     private val injectedRefreshApi: RefreshApi? = null
 ) : Authenticator {
 
