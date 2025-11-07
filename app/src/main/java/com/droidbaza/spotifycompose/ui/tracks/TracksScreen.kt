@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -55,11 +56,15 @@ fun TracksScreen(viewModel: TracksViewModel = viewModel()) {
     }
 
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-        Column {
+        Column(modifier = Modifier.padding(16.dp)) {
             if (loadingInitial && tracks.isEmpty()) {
                 CircularProgressIndicator()
             } else {
-                TrackList(tracks, state = listState)
+                if (tracks.isEmpty()) {
+                    Text(text = "Aucun titre disponible", style = MaterialTheme.typography.bodyMedium)
+                } else {
+                    TrackList(tracks, state = listState)
+                }
                 if (loadingMore) {
                     Spacer(Modifier.height(8.dp))
                     CircularProgressIndicator()
@@ -75,7 +80,8 @@ private fun TrackList(list: List<TrackItem>, state: androidx.compose.foundation.
         items(list) { item ->
             val title = item.title ?: "Untitled"
             val artist = item.artistName ?: "Unknown"
-            Text(text = "$title — $artist")
+            Text(text = "$title — $artist", style = MaterialTheme.typography.bodyMedium)
+            Spacer(Modifier.height(8.dp))
         }
     }
 }
